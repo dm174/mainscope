@@ -34,7 +34,10 @@ class FeedFragment : Fragment() {
             }
 
             override fun onLike(post: Post) {
-                viewModel.likeById(post.id)
+               viewModel.likeById(post.id)
+            }
+            override fun disLike(post: Post) {
+                viewModel.dislikeById(post.id)
             }
 
             override fun onRemove(post: Post) {
@@ -65,6 +68,7 @@ class FeedFragment : Fragment() {
         }
         viewModel.data.observe(viewLifecycleOwner) { state ->
             adapter.submitList(state.posts)
+
             binding.emptyText.isVisible = state.empty
         }
 
